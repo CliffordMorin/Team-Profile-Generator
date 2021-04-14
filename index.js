@@ -1,7 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
-const generateHTML = require('./src/generateHTML');
+// const generateHTML = require('./src/generateHTML');
+const Intern = require('./lib/Intern');
 
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -15,18 +16,18 @@ const promptUser = () => {
       },
       {
         type: 'input',
-        name: 'location',
-        message: 'Where are you from?',
+        name: 'id',
+        message: 'What is your id number?',
       },
       {
         type: 'input',
-        name: 'hobby',
-        message: 'What is your favorite hobby?',
+        name: 'email',
+        message: 'What is your email?',
       },
       {
         type: 'input',
-        name: 'food',
-        message: 'What is your favorite food?',
+        name: 'officeNumber',
+        message: 'What is your office number?',
       },
       {
         type: 'input',
@@ -35,8 +36,8 @@ const promptUser = () => {
       },
       {
         type: 'input',
-        name: 'linkedin',
-        message: 'Enter your LinkedIn URL.',
+        name: 'school',
+        message: 'Enter your School',
       },
     ]);
   };
@@ -44,9 +45,17 @@ const promptUser = () => {
 // writeFileAsync as a promise
 const init = () => {
     promptUser()
-      .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-      .then(() => console.log('Successfully wrote to index.html'))
-      .catch((err) => console.error(err));
+      .then((answers) => {
+        console.log(answers);
+        var intern = new Intern (answers.name, answers.id, answers.email, answers.school);
+        console.log(intern);
+        console.log(intern.getRole());
+        intern.getRole();
+        
+        // writeFileAsync('index.html', generateHTML(answers)))
+      })
+      // .then(() => console.log('Successfully wrote to index.html'))
+      // .catch((err) => console.error(err));
   };
   
   init();
