@@ -6,50 +6,11 @@ const fs = require('fs');
 const util = require('util');
 const generateHTML = require('./src/generateHTML');
 
-
+//Empty array that holds each team member added
 let teamMembers = [];
 
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
-
-// const promptUser = () => {
-//     return inquirer.prompt([
-//       {
-//         type: 'input',
-//         name: 'name',
-//         message: 'What is your name?',
-//       },
-//       {
-//         type: 'input',
-//         name: 'id',
-//         message: 'What is your id number?',
-//       },
-//       {
-//         type: 'input',
-//         name: 'email',
-//         message: 'What is your email?',
-//       },
-//       {
-//         type: 'input',
-//         name: 'officeNumber',
-//         message: 'What is your office number?',
-//       },
-//       {
-//         type: 'input',
-//         name: 'github',
-//         message: 'Enter your GitHub Username',
-//       },
-//       {
-//         type: 'input',
-//         name: 'school',
-//         message: 'Enter your School',
-//       },
-//     ]);
-//   };
-
-
-//runs menu of questions
-// function appMenu() {
 
 //initial function to choose which team member in order to run each member function
 function createTeam() {
@@ -285,12 +246,12 @@ function askInternQuestion() {
     createTeam();
   })
 };
-// }
+
 // writeFileAsync as a promise
 const init = () => {
 
-    createTeam()
-      console.log(teamMembers);
+    createTeam();
+      // console.log(teamMembers);
       
   };
   

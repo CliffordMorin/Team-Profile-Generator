@@ -85,7 +85,7 @@ const generateEngineer = (engineer) => {
                     <div class="list-group">
                         <a href="" class="list-group-item list-group-item-action active">ID: ${engineer.getId()}</a>
                         <a href="mailto: ${engineer.getEmail()}" class="list-group-item list-group-item-action">Email: ${engineer.getEmail()}</a>
-                        <a href="https://github.com/${engineer.getGithub()}" target="_blank" class="list-group-item list-group-item-action disabled">Github: ${engineer.getGithub()}</a>
+                        <a href="https://github.com/${engineer.getGithub()}" target="_blank" class="list-group-item list-group-item-action">Github: ${engineer.getGithub()}</a>
                     </div>
                 </p>
                 </div>
