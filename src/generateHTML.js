@@ -1,4 +1,6 @@
-const generateHTML = (answers) => {
+
+
+const generateHTML = (teamMembers) => {
 return `
 <!DOCTYPE html>
 <html lang="en">
@@ -19,9 +21,7 @@ return `
     </header>
     <div class="card-ctn">
         <div class="row">
-            ${generateManager()}
-            ${generateEngineer()}
-            ${generateIntern()}
+            ${generateTeam(teamMembers)}
         </div>
     </div>  
 
@@ -32,6 +32,26 @@ return `
 </html>
 `
 };
+
+function generateTeam(teamMembers) {
+    let html = ""
+    teamMembers.forEach(member => {
+        switch (member.getRole()) {
+            case "Manager":
+                html += generateManager(member)
+                break;
+            case "Engineer":
+                html += generateEngineer(member)
+                break;    
+            case "Intern":
+                html += generateIntern(member)
+                break;    
+            default:
+                break;
+        }
+    })
+    return html;
+}
 
 const generateManager = (manager) => {
     return  `
@@ -45,7 +65,7 @@ const generateManager = (manager) => {
                     <div class="list-group">
                         <a href="" class="list-group-item list-group-item-action active">ID: ${manager.getId()}</a>
                         <a href="mailto: ${manager.getEmail()}" class="list-group-item list-group-item-action">Email: ${manager.getEmail()}</a>
-                        <a href="" class="list-group-item list-group-item-action disabled">Office Number: ${manager.officeNumber()}</a>
+                        <a href="" class="list-group-item list-group-item-action disabled">Office Number: ${manager.getOfficeNumber()}</a>
                     </div>
                 </p>
                 </div>
@@ -92,3 +112,5 @@ const generateIntern = (intern) => {
             </div>
             `
 };
+
+module.exports = generateHTML

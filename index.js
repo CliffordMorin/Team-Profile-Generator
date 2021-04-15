@@ -2,15 +2,15 @@ const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern');
 const inquirer = require('inquirer');
-// const fs = require('fs');
-// const util = require('util');
-// const generateHTML = require('./src/generateHTML');
+const fs = require('fs');
+const util = require('util');
+const generateHTML = require('./src/generateHTML');
 
-const teamMembers = [];
-const idArray = [];
+
+let teamMembers = [];
 
 // create writeFile function using promises instead of a callback function
-// const writeFileAsync = util.promisify(fs.writeFile);
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // const promptUser = () => {
 //     return inquirer.prompt([
@@ -77,6 +77,12 @@ function createTeam() {
         askInternQuestion();
         break;  
       case "I don't want to add any more team members":
+
+      let html = generateHTML(teamMembers);
+      writeFileAsync('./dist/index.html', html)
+        
+      .then(() => console.log('Successfully wrote to index.html'))
+      .catch((err) => console.error(err));
         break;      
     }
   })
@@ -142,10 +148,10 @@ function askManagerQuestion() {
       }
     },
   ]).then((userInput) => {
-    console.log(userInput);
+    // console.log(userInput);
     var manager = new Manager (userInput.managerName, userInput.managerId, userInput.managerEmail, userInput.officeNumber);
-    console.log(manager);
-    console.log(manager.getRole());
+    // console.log(manager);
+    teamMembers.push(manager);
     createTeam();
   })
 };
@@ -207,11 +213,10 @@ function askEngineerQuestion() {
       }
     },
   ]).then((userInput) => {
-    console.log(userInput);
+    // console.log(userInput);
     var engineer = new Engineer (userInput.engineerName, userInput.engineerId, userInput.engineerEmail, userInput.gitHub);
-    console.log(engineer);
-    console.log(engineer.getGithub);
-    console.log(engineer.getRole());
+    // console.log(engineer);
+    teamMembers.push(engineer);
     createTeam();
   })
 };
@@ -273,11 +278,10 @@ function askInternQuestion() {
       }
     },
   ]).then((userInput) => {
-    console.log(userInput);
+    // console.log(userInput);
     var intern = new Intern (userInput.internName, userInput.internId, userInput.internEmail, userInput.school);
-    console.log(intern);
-    console.log(intern.getSchool());
-    console.log(intern.getRole());
+    // console.log(intern);
+    teamMembers.push(intern);
     createTeam();
   })
 };
@@ -285,23 +289,9 @@ function askInternQuestion() {
 // writeFileAsync as a promise
 const init = () => {
 
-    createTeam();
-    askManagerQuestion();
-    askEngineerQuestion();
-    askInternQuestion();
-    
-    // promptUser()
-    //   .then((answers) => {
-    //     console.log(answers);
-    //     var intern = new Intern (answers.name, answers.id, answers.email, answers.school);
-    //     console.log(intern);
-    //     console.log(intern.getRole());
-    //     intern.getRole();
-        
-        // writeFileAsync('index.html', generateHTML(answers)))
-      // })
-      // .then(() => console.log('Successfully wrote to index.html'))
-      // .catch((err) => console.error(err));
+    createTeam()
+      console.log(teamMembers);
+      
   };
   
   init();
