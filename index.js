@@ -38,12 +38,7 @@ function createTeam() {
         askInternQuestion();
         break;  
       case "I don't want to add any more team members":
-
-      let html = generateHTML(teamMembers);
-      writeFileAsync('./dist/index.html', html)
-        
-      .then(() => console.log('Successfully wrote to index.html'))
-      .catch((err) => console.error(err));
+        print();
         break;      
     }
   })
@@ -247,11 +242,19 @@ function askInternQuestion() {
   })
 };
 
-// writeFileAsync as a promise
+//writes file with html
+const print = () => {
+
+  let html = generateHTML(teamMembers);
+      writeFileAsync('./dist/index.html', html)
+      .then(() => console.log('Successfully wrote to index.html'))
+      .catch((err) => console.error(err));
+}
+
+// Runs application
 const init = () => {
 
     createTeam();
-      // console.log(teamMembers);
       
   };
   
