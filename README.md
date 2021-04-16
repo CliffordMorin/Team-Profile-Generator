@@ -36,7 +36,7 @@ npm run start
  ## Links
  
   * Github Repository URL: (https://github.com/CliffordMorin/Team-Profile-Generator)
-  * Video Walk-through application: (https://drive.google.com/file/d/13EvAn7S8kVFmGNUpV1aX4PEG-DQoiyIx/view?usp=sharing) 
+  * Video Walk-through application: (https://drive.google.com/file/d/1skwMUQcPbtTtgS4TAA1a5PdgttMe2mc7/view?usp=sharing) 
 
 ## License
 
